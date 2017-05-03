@@ -8,5 +8,10 @@ namespace TweetScope.Web.UI.Controllers
         {
             return View();
         }
+
+        public ActionResult Analyze()
+        {
+            return View();
+        }
     }
 }

@@ -254,6 +254,7 @@
     <Content Include="Views\Shared\_About.cshtml" />
     <Content Include="Views\Shared\_Analyze.cshtml" />
     <Content Include="Views\Shared\_Promo.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
