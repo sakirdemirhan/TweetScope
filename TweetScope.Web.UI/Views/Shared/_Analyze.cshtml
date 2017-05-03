@@ -3,11 +3,11 @@
     <div class="container text-center">
         <h2 class="title">Hemen Analiz Etmeye Başlayın !</h2>
         <form action="">
-            Analiz etmek istediğiniz kullanıcı: <input type="text" class="inputKullanici" name="usrname" placeholder="Örnek: {at}TweetScope">
+            Analiz etmek istediğiniz kullanıcı: <input type="text" class="inputKullanici" name="usrname" placeholder="Örnek: @("@")TweetScope">
         </form>
         <br />
         <p class="text-center">
-            <a class="btn btn-cta-secondary" href="" target="_blank">Başla</a>
+            @Html.ActionLink("Başla", "Analyze", "Home", null, new {@class = "btn btn-cta-secondary", target="_blank" })
         </p>
     </div><!--//container-->
 </section><!--//features-->

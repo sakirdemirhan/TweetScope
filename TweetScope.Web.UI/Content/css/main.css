@@ -1,0 +1,24 @@
+﻿#body {
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+    min-height: 100vh;
+    background: #F5F5F5;
+}
+
+.profile-image {
+    background: white;
+    border: 1px solid #BBB;
+    padding: 4px;
+}
+
+.ozet-baslik {
+    color: #074F66;
+    font-weight: bold;
+}
+
+.ozet {
+    font-weight: bold;
+    color: white;
+    margin-top: 5px;
+}

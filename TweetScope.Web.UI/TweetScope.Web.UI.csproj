@@ -127,6 +127,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\main.css" />
     <Content Include="Content\css\styles-2.css" />
     <Content Include="Content\css\styles-3.css" />
     <Content Include="Content\css\styles-4.css" />
@@ -255,6 +256,9 @@
     <Content Include="Views\Shared\_Analyze.cshtml" />
     <Content Include="Views\Shared\_Promo.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Home\Analyze.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
