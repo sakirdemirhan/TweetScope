@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetScope.Web.UI", "TweetScope.Web.UI\TweetScope.Web.UI.csproj", "{C7D53290-4729-4450-BE5F-1ED882E736B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterHandle", "TwitterHandle\TwitterHandle.csproj", "{71CDB2B1-7E9B-47D8-B953-EC1AB2D0BCE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C7D53290-4729-4450-BE5F-1ED882E736B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7D53290-4729-4450-BE5F-1ED882E736B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7D53290-4729-4450-BE5F-1ED882E736B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71CDB2B1-7E9B-47D8-B953-EC1AB2D0BCE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71CDB2B1-7E9B-47D8-B953-EC1AB2D0BCE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71CDB2B1-7E9B-47D8-B953-EC1AB2D0BCE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71CDB2B1-7E9B-47D8-B953-EC1AB2D0BCE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

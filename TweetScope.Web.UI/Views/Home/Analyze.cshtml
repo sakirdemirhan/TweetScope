@@ -1,4 +1,4 @@
-﻿
+﻿@model TweetScope.Web.UI.ViewModel.AnalyzeViewModel
 @{
     ViewBag.Title = "Analyze";
 }
@@ -7,8 +7,8 @@
     <div class="container" style="padding-top: 40px; background: white; width: 74%; padding-bottom: 20px;">
         <div class="row">
             <div class="col-md-4 col-md-offset-4 text-center">
-                <img src="https://randomuser.me/api/portraits/men/86.jpg" alt="" class="img-circle profile-image">
-                <h3>@@cmylmz</h3>
+                <img src="@ViewBag.ImageUrl" alt="" class="img-circle profile-image">
+                <h3>@("@")@ViewBag.ScreenName</h3>
             </div>
         </div>
         <div class="row text-center" style="margin-top: 10px;">
@@ -16,7 +16,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body" style="background: #17BAEF;">
                         <span class="ozet-baslik">Toplam Tweet</span>
-                        <p class="ozet">1.230</p>
+                        <p class="ozet">@ViewBag.TweetCount.ToString("#,##0")</p>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body" style="background: #17BAEF;">
                         <span class="ozet-baslik">Takipçiler</span>
-                        <p class="ozet">1.230</p>
+                        <p class="ozet">@ViewBag.FollowersCount.ToString("#,##0")</p>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body" style="background: #17BAEF;">
                         <span class="ozet-baslik">Takip Edilen</span>
-                        <p class="ozet">1.230</p>
+                        <p class="ozet">@ViewBag.FollowingCount.ToString("#,##0")</p>
                     </div>
                 </div>
             </div>
@@ -41,24 +41,30 @@
             <div class="col-md-12">
                 <div class="panel panel-danger">
                     <div class="panel-heading text-center" style="font-size: 24px">
-                        <span class="fa fa-heart"></span> En Beğenilen Tweet
+                        <span class="fa fa-heart"></span> En Beğenilen Tweetler
                     </div>
                     <div class="panel-body">
-                        <blockquote>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        </blockquote>
+                        @foreach (var status in Model.MostLikedStatuses.ToList())
+                        {
+                            <blockquote>
+                                <p>@status.Text</p>
+                            </blockquote>
+                        }
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="panel panel-success">
                     <div class="panel-heading text-center" style="font-size: 24px">
-                        <span class="fa fa-retweet"></span>  En Çok Retweet Edilen Tweet
+                        <span class="fa fa-retweet"></span>  En Çok Retweet Edilen Tweetler
                     </div>
                     <div class="panel-body">
-                        <blockquote>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        </blockquote>
+                        @foreach (var status in Model.MostReTweetStatuses.ToList())
+                        {
+                            <blockquote>
+                                <p>@status.Text</p>
+                            </blockquote>
+                        }
                     </div>
                 </div>
             </div>

@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using TweetScope.Web.UI.ViewModel;
+using TwitterHandle;
 
 namespace TweetScope.Web.UI.Controllers
 {
@@ -9,9 +12,26 @@ namespace TweetScope.Web.UI.Controllers
             return View();
         }
 
-        public ActionResult Analyze()
+        public ActionResult Analyze(string screenName)
         {
-            return View();
+            if (!string.IsNullOrEmpty(screenName))
+            {
+                screenName = screenName.ToLower();
+                ViewBag.ScreenName = screenName;
+                ViewBag.ImageUrl = Twitter.GetAvatar(screenName);
+                ViewBag.TweetCount = Twitter.GetTweetCount(screenName);
+                ViewBag.FollowersCount = Twitter.GetFollowerCount(screenName);
+                ViewBag.FollowingCount = Twitter.GetFollowingCount(screenName);
+
+                var model = new AnalyzeViewModel()
+                {
+                    MostLikedStatuses = Twitter.GetMostLikedTweets(screenName).Take(10),
+                    MostReTweetStatuses = Twitter.GetMostReTweeted(screenName).Take(10)
+                };
+
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
