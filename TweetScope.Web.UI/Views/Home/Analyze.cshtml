@@ -43,38 +43,45 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading text-center" style="font-size: 24px">
-                            <span class="fa fa-heart"></span> En Beğenilen Tweetler
+            if (Model != null)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading text-center" style="font-size: 24px">
+                                <span class="fa fa-heart"></span> En Beğenilen Tweetler
+                            </div>
+                            <div class="panel-body">
+                                @foreach (var status in Model.MostLikedStatuses.ToList())
+                                {
+                                    <blockquote>
+                                        <p>@status.Text</p>
+                                    </blockquote>
+                                }
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            @foreach (var status in Model.MostLikedStatuses.ToList())
-                            {
-                                <blockquote>
-                                    <p>@status.Text</p>
-                                </blockquote>
-                            }
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading text-center" style="font-size: 24px">
+                                <span class="fa fa-retweet"></span>  En Çok Retweet Edilen Tweetler
+                            </div>
+                            <div class="panel-body">
+                                @foreach (var status in Model.MostReTweetStatuses.ToList())
+                                {
+                                    <blockquote>
+                                        <p>@status.Text</p>
+                                    </blockquote>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="panel panel-success">
-                        <div class="panel-heading text-center" style="font-size: 24px">
-                            <span class="fa fa-retweet"></span>  En Çok Retweet Edilen Tweetler
-                        </div>
-                        <div class="panel-body">
-                            @foreach (var status in Model.MostReTweetStatuses.ToList())
-                            {
-                                <blockquote>
-                                    <p>@status.Text</p>
-                                </blockquote>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">Kullanıcıya ait tweet bulunamadı.</div>
+            }
         }
     </div>
 </div>

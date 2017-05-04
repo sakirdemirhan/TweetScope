@@ -24,14 +24,16 @@ namespace TweetScope.Web.UI.Controllers
                     ViewBag.TweetCount = Twitter.GetTweetCount(screenName);
                     ViewBag.FollowersCount = Twitter.GetFollowerCount(screenName);
                     ViewBag.FollowingCount = Twitter.GetFollowingCount(screenName);
-
-                    var model = new AnalyzeViewModel()
+                    if (ViewBag.TweetCount > 0)
                     {
-                        MostLikedStatuses = Twitter.GetMostLikedTweets(screenName).Take(10),
-                        MostReTweetStatuses = Twitter.GetMostReTweeted(screenName).Take(10)
-                    };
-
-                    return View(model);
+                        var model = new AnalyzeViewModel()
+                        {
+                            MostLikedStatuses = Twitter.GetMostLikedTweets(screenName).Take(10),
+                            MostReTweetStatuses = Twitter.GetMostReTweeted(screenName).Take(10)
+                        };
+                        return View(model);
+                    }
+                    return View();
                 }
                 else
                 {
