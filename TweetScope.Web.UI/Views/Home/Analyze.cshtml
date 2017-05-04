@@ -5,70 +5,77 @@
 @{Html.RenderPartial("_Header");}
 <div id="body">
     <div class="container" style="padding-top: 40px; background: white; width: 74%; padding-bottom: 20px;">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4 text-center">
-                <img src=@ViewBag.ImageUrl.ToString().Replace("_normal","") alt="" class="img-circle profile-image" width="150" height="150">
-                <h3>@("@")@ViewBag.ScreenName</h3> 
+        @if (ViewBag.Hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Hata</div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <img src=@ViewBag.ImageUrl.ToString().Replace("_normal","") alt="" class="img-circle profile-image" width="150" height="150">
+                    <h3>@("@")@ViewBag.ScreenName</h3>
+                </div>
             </div>
-        </div>
-        <div class="row text-center" style="margin-top: 10px;">
-            <div class="col-md-2 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-body" style="background: #17BAEF;">
-                        <span class="ozet-baslik">Toplam Tweet</span>
-                        <p class="ozet">@ViewBag.TweetCount.ToString("#,##0")</p>
+            <div class="row text-center" style="margin-top: 10px;">
+                <div class="col-md-2 col-md-offset-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background: #17BAEF;">
+                            <span class="ozet-baslik">Toplam Tweet</span>
+                            <p class="ozet">@ViewBag.TweetCount.ToString("#,##0")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background: #17BAEF;">
+                            <span class="ozet-baslik">Takipçiler</span>
+                            <p class="ozet">@ViewBag.FollowersCount.ToString("#,##0")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background: #17BAEF;">
+                            <span class="ozet-baslik">Takip Edilen</span>
+                            <p class="ozet">@ViewBag.FollowingCount.ToString("#,##0")</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="panel panel-default">
-                    <div class="panel-body" style="background: #17BAEF;">
-                        <span class="ozet-baslik">Takipçiler</span>
-                        <p class="ozet">@ViewBag.FollowersCount.ToString("#,##0")</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading text-center" style="font-size: 24px">
+                            <span class="fa fa-heart"></span> En Beğenilen Tweetler
+                        </div>
+                        <div class="panel-body">
+                            @foreach (var status in Model.MostLikedStatuses.ToList())
+                            {
+                                <blockquote>
+                                    <p>@status.Text</p>
+                                </blockquote>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading text-center" style="font-size: 24px">
+                            <span class="fa fa-retweet"></span>  En Çok Retweet Edilen Tweetler
+                        </div>
+                        <div class="panel-body">
+                            @foreach (var status in Model.MostReTweetStatuses.ToList())
+                            {
+                                <blockquote>
+                                    <p>@status.Text</p>
+                                </blockquote>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="panel panel-default">
-                    <div class="panel-body" style="background: #17BAEF;">
-                        <span class="ozet-baslik">Takip Edilen</span>
-                        <p class="ozet">@ViewBag.FollowingCount.ToString("#,##0")</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-danger">
-                    <div class="panel-heading text-center" style="font-size: 24px">
-                        <span class="fa fa-heart"></span> En Beğenilen Tweetler
-                    </div>
-                    <div class="panel-body">
-                        @foreach (var status in Model.MostLikedStatuses.ToList())
-                        {
-                            <blockquote>
-                                <p>@status.Text</p>
-                            </blockquote>
-                        }
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-success">
-                    <div class="panel-heading text-center" style="font-size: 24px">
-                        <span class="fa fa-retweet"></span>  En Çok Retweet Edilen Tweetler
-                    </div>
-                    <div class="panel-body">
-                        @foreach (var status in Model.MostReTweetStatuses.ToList())
-                        {
-                            <blockquote>
-                                <p>@status.Text</p>
-                            </blockquote>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
 

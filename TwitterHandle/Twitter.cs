@@ -1,4 +1,5 @@
 ﻿using LinqToTwitter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,9 +26,7 @@ namespace TwitterHandle
             int pagination = 0;
             ulong lastId = 0;
 
-            var u = (from user in twitterCtx.User
-                     where user.Type == UserType.Show && user.ScreenName == screenName
-                     select user).SingleOrDefault();
+            var u = GetUser(screenName);
             if (u == null) return null;
             int maxPagination = u.StatusesCount / 200;
 
@@ -78,48 +77,43 @@ namespace TwitterHandle
 
         public static int GetTweetCount(string screenName)
         {
-            var twitterCtx = new TwitterContext(Authorizer);
-
-            var u = (from user in twitterCtx.User
-                     where user.Type == UserType.Show && user.ScreenName == screenName
-                     select user).SingleOrDefault();
-            if (u == null) return 0;
-
-            return u.StatusesCount;
+            var u = GetUser(screenName);
+            return u?.StatusesCount ?? 0;
         }
 
         public static int GetFollowerCount(string screenName)
         {
-            var twitterCtx = new TwitterContext(Authorizer);
-
-            var u = (from user in twitterCtx.User
-                     where user.Type == UserType.Show && user.ScreenName == screenName
-                     select user).SingleOrDefault();
-            if (u == null) return 0;
-
-            return u.FollowersCount;
+            var u = GetUser(screenName);
+            return u?.FollowersCount ?? 0;
         }
 
         public static int GetFollowingCount(string screenName)
         {
-            var twitterCtx = new TwitterContext(Authorizer);
-
-            var u = (from user in twitterCtx.User
-                     where user.Type == UserType.Show && user.ScreenName == screenName
-                     select user).SingleOrDefault();
-            if (u == null) return 0;
-
-            return u.FriendsCount;
+            var u = GetUser(screenName);
+            return u?.FriendsCount ?? 0;
         }
 
         public static string GetAvatar(string screenName)
         {
+            var u = GetUser(screenName);
+            return u?.ProfileImageUrl;
+        }
+
+        public static User GetUser(string screenName)
+        {
             var twitterCtx = new TwitterContext(Authorizer);
 
-            var u = (from user in twitterCtx.User
-                     where user.Type == UserType.Show && user.ScreenName == screenName
-                     select user).SingleOrDefault();
-            return u?.ProfileImageUrl;
+            try
+            {
+                var u = (from user in twitterCtx.User
+                         where user.Type == UserType.Show && user.ScreenName == screenName
+                         select user).SingleOrDefault();
+                return u;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
