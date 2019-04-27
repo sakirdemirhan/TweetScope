@@ -30,7 +30,7 @@ namespace TwitterHandle
                 ulong lastId = 0;
 
                 var u = GetUser(screenName);
-            
+                //test
                 if (u == null) return null;
                 int maxPagination = u.StatusesCount / 200;
 
